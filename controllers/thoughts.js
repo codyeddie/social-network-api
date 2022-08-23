@@ -1,6 +1,6 @@
 const { Thought, User } = require('../models');
 
-const thoughtsController = {
+const thoughtsCrud = {
     //get all thoughts
     getAllThoughts(req, res) {
         Thought.find({})
@@ -58,7 +58,7 @@ const thoughtsController = {
             .catch(err => res.json(err));
     },
 
-    // remove thought
+    // delete a user thought
     deleteThought({ params }, res) {
         console.log(params);
         Thought.findOneAndDelete({ _id: params.thoughtId })
@@ -83,7 +83,7 @@ const thoughtsController = {
             .catch(err => res.json(err));
     },
 
-    addReaction({ params, body }, res) {
+    newReaction({ params, body }, res) {
         console.log(body)
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
@@ -95,7 +95,7 @@ const thoughtsController = {
         })
     },
 
-    removeReaction({ params }, res) {
+    deleteReaction({ params }, res) {
         console.log(params);
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
@@ -122,4 +122,4 @@ const thoughtsController = {
 
 
 
-module.exports = thoughtsController;
+module.exports = thoughtsCrud;
